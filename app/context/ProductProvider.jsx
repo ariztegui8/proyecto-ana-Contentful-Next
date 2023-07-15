@@ -7,11 +7,11 @@ import axios from "axios";
 const ProductContext = createContext();
 
 const ProductProvider = ({ children }) => {
+
   const [cards, setCards] = useState([]);
   const [search, setSearch] = useState('');
   const [alert, setAlert] = useState(false);
-  const [pdfFile, setPdfFile] = useState(null);
-
+  const [archivo, setArchivo] = useState(null);
   const [cv, setCv] = useState({
     nombre: '',
     apellido: '',
@@ -20,6 +20,10 @@ const ProductProvider = ({ children }) => {
     pais: '',
     telefono: '',
   });
+  console.log('archivo',archivo);
+
+
+  const { nombre, apellido, email, linkedin, pais, telefono } = cv;
 
   const handleCv = e => {
     setCv({
@@ -28,34 +32,30 @@ const ProductProvider = ({ children }) => {
     });
   };
 
+  const handleArchivo = (e) => {
+    const file = e.target.files[0];
+    console.log('file',file);
+    setArchivo(file);
+  };
+
   const handleSubmitCv = async (e) => {
     e.preventDefault();
-  
-    const formData = new FormData();
-    formData.append('to', 'jorge.ariztegui@getfridom.com');
-    formData.append('from', process.env.SENDGRID_SENDER_EMAIL);
-    formData.append('subject', 'Nuevo CV recibido');
-    formData.append('text', 'Adjunto encontrarás el CV recibido.');
-    formData.append('pdf', pdfFile);
-  
+
     try {
-      await axios.post('/api/send-email', formData);
+      await axios.post('/api/sendEmail', cv, archivo);
+      console.log('El correo electrónico se ha enviado correctamente');
       setAlert(true);
-      setCv({
-        nombre: '',
-        apellido: '',
-        email: '',
-        linkedin: '',
-        pais: '',
-        telefono: '',
-      });
-      setPdfFile(null);
+      setTimeout(() => {
+        setAlert(false);
+        router.push('/');
+      }, 2000);
     } catch (error) {
-      console.error('Error al enviar el correo electrónico', error);
+      console.error('Error al enviar el correo electrónico:', error);
     }
   };
 
-  // const router = useRouter();
+
+  const router = useRouter();
 
   const results = !search ? cards : cards.filter((dato) => dato.fields.title?.toLowerCase().includes(search.toLowerCase()));
 
@@ -92,7 +92,7 @@ const ProductProvider = ({ children }) => {
         handleCv,
         handleSubmitCv,
         handleChangeSearch,
-        setPdfFile 
+        handleArchivo
       }}
     >
       {children}

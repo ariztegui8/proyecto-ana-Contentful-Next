@@ -1,21 +1,16 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import ProductContext from '../context/ProductProvider';
-import axios from 'axios';
 
 const Formulario = () => {
-  const { cv, handleCv, handleSubmitCv, alert, setPdfFile } = useContext(ProductContext);
+  const { cv, handleCv, handleSubmitCv, alert , handleArchivo} = useContext(ProductContext);
 
   const { nombre, apellido, email, linkedin, pais, telefono } = cv;
 
-  const handleFileChange = (e) => {
-    const file = e.target.files[0];
-    setPdfFile(file);
-  };
-
   return (
-    <form 
+    <form
       className="flex justify-center flex-1 w-full"
       onSubmit={handleSubmitCv}
+      encType="multipart/form-data"
     >
       <div className="card w-80 sm:w-3/4 bg-base-100 border-2 border-[#ECEDFD]">
         <div className="card-body p-4 md:p-8 bg-gray-50">
@@ -84,9 +79,8 @@ const Formulario = () => {
             <input
               type="file"
               className="file-input file-input-bordered w-full"
-              name="pdf"
-              onChange={handleFileChange}
-              accept="application/pdf"
+              name="file"
+              onChange={handleArchivo}
             />
           </div>
 
@@ -94,7 +88,7 @@ const Formulario = () => {
             <button type='submit' className="btn btn-success">Enviar</button>
           </div>
 
-          {alert ? 
+          {alert ?
             <div className="alert alert-success">
               <svg xmlns="http://www.w3.org/2000/svg" className="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
               <span>Tu email se ha enviado correctamente</span>
