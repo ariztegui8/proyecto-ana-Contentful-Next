@@ -8,9 +8,7 @@ export default async function handler(req, res) {
     console.log(apellido);
     console.log(archivo);
 
-    const apiKey = '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';
-
-    sgMail.setApiKey(apiKey);
+    sgMail.setApiKey(process.env.NEXT_PUBLIC_SENDGRID_API_KEY);
 
     const msg = {
       to: 'jorgeariztegui8@gmail.com',

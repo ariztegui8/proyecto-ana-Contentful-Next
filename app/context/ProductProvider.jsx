@@ -23,8 +23,6 @@ const ProductProvider = ({ children }) => {
   console.log('archivo',archivo);
 
 
-  const { nombre, apellido, email, linkedin, pais, telefono } = cv;
-
   const handleCv = e => {
     setCv({
       ...cv,
