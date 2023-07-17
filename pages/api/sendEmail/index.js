@@ -52,3 +52,17 @@ export default async function handler(req, res) {
     res.status(405).json({ error: 'Método no permitido' });
   }
 }
+
+
+
+// try {
+//   await axios.post('/api/sendEmail', cv, archivo);
+//   console.log('El correo electrónico se ha enviado correctamente');
+//   setAlert(true);
+//   setTimeout(() => {
+//     setAlert(false);
+//     router.push('/');
+//   }, 2000);
+// } catch (error) {
+//   console.error('Error al enviar el correo electrónico:', error);
+// }

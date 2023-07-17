@@ -1,7 +1,6 @@
 import { createContext, useEffect, useState } from "react";
 import { createClient } from 'contentful';
-import { useRouter } from "next/navigation";
-import axios from "axios";
+
 
 
 const ProductContext = createContext();
@@ -10,50 +9,7 @@ const ProductProvider = ({ children }) => {
 
   const [cards, setCards] = useState([]);
   const [search, setSearch] = useState('');
-  const [alert, setAlert] = useState(false);
-  const [archivo, setArchivo] = useState(null);
-  const [cv, setCv] = useState({
-    nombre: '',
-    apellido: '',
-    email: '',
-    linkedin: '',
-    pais: '',
-    telefono: '',
-  });
-  console.log('archivo',archivo);
-
-
-  const handleCv = e => {
-    setCv({
-      ...cv,
-      [e.target.name]: e.target.value
-    });
-  };
-
-  const handleArchivo = (e) => {
-    const file = e.target.files[0];
-    console.log('file',file);
-    setArchivo(file);
-  };
-
-  const handleSubmitCv = async (e) => {
-    e.preventDefault();
-
-    try {
-      await axios.post('/api/sendEmail', cv, archivo);
-      console.log('El correo electrónico se ha enviado correctamente');
-      setAlert(true);
-      setTimeout(() => {
-        setAlert(false);
-        router.push('/');
-      }, 2000);
-    } catch (error) {
-      console.error('Error al enviar el correo electrónico:', error);
-    }
-  };
-
-
-  const router = useRouter();
+  
 
   const results = !search ? cards : cards.filter((dato) => dato.fields.title?.toLowerCase().includes(search.toLowerCase()));
 
@@ -85,12 +41,7 @@ const ProductProvider = ({ children }) => {
       value={{
         cards,
         results,
-        cv,
-        alert,
-        handleCv,
-        handleSubmitCv,
         handleChangeSearch,
-        handleArchivo
       }}
     >
       {children}
