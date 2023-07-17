@@ -23,7 +23,7 @@ export default withFileUpload(async (req, res) => {
             secure: true,
             auth: {
                 user: 'team.ariztegui@gmail.com',
-                pass: 'aauexyqdxhbseefu',
+                pass: process.env.NEXT_PUBLIC_NODEMAILER_API_KEY,
             },
             tls: {
                 rejectUnauthorized: false,

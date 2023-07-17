@@ -7,10 +7,10 @@ const CarrouselProvider = ({children}) => {
 
     const [slider, setSlider] = useState([])
 
-    const client = createClient({
-        space: '85iynf6xw7x7',
-        accessToken: 'TN9HVY7Wu8NIDBpO3NE6C3jH3MUPl_fHXd6-3L9E3sE'
-    })
+   const client = createClient({
+    space: process.env.NEXT_PUBLIC_NODEMAILER_SPACE,
+    accessToken: process.env.NEXT_PUBLIC_CONTENTFUL_ACCES_TOKEN,
+  });
 
     useEffect(() => {
         const consultarApi = async () => {

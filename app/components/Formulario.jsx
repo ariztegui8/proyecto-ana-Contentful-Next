@@ -59,7 +59,6 @@ const Formulario = ({ title }) => {
       }
 
       if (response.status === 200) {
-        console.log(archivo);
         setAlert(true);
         setTimeout(() => {
           setAlert(false);

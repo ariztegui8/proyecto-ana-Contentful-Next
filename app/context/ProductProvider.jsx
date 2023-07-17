@@ -9,7 +9,7 @@ const ProductProvider = ({ children }) => {
 
   const [cards, setCards] = useState([]);
   const [search, setSearch] = useState('');
-  
+
 
   const results = !search ? cards : cards.filter((dato) => dato.fields.title?.toLowerCase().includes(search.toLowerCase()));
 
@@ -18,8 +18,8 @@ const ProductProvider = ({ children }) => {
   };
 
   const client = createClient({
-    space: '85iynf6xw7x7',
-    accessToken: 'TN9HVY7Wu8NIDBpO3NE6C3jH3MUPl_fHXd6-3L9E3sE',
+    space: process.env.NEXT_PUBLIC_NODEMAILER_SPACE,
+    accessToken: process.env.NEXT_PUBLIC_CONTENTFUL_ACCES_TOKEN,
   });
 
   useEffect(() => {
