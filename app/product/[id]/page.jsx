@@ -2,6 +2,7 @@
 import Formulario from '@/app/components/Formulario';
 import useDefault from '@/app/hooks/useProduct';
 import { useParams } from 'next/navigation';
+import { PacmanLoader, ClipLoader } from "react-spinners";
 import React from 'react';
 
 const ProductId = () => {
@@ -11,25 +12,39 @@ const ProductId = () => {
 
   const product = cards.find((card) => card.sys.id === id);
 
-  if (!product) {
-    return <div>Producto no encontrado</div>;
-  }
+  // if (!product) {
+  //   return <div>Producto no encontrado</div>;
+  // }
 
   return (
-    <div className="card bg-base-100 flex items-center justify-center gap-6 w-full py-8 px-5  md:px-24">
-      <div className="flex justify-center flex-1 w-full">
-        <div className="card bg-base-100 border-2 border-[#ECEDFD]">
-          <div className="card-body p-4 md:p-8 bg-gray-50">
-            <h2 className="card-title text-xl font-bold text-custom-black">
-              {product.fields.title}
-            </h2>
-            <p>{product.fields.description}</p>
-          </div>
+    <>
+      {!product ?
+        <div className='flex flex-col justify-center items-center p-4 gap-2'>
+          <ClipLoader
+            color="#404EED"
+            size={30}
+          />
+          <p>Cargando...</p>
         </div>
-      </div>
+        :
 
-      <Formulario title={product.fields.title} />
-    </div>
+        <div className="card bg-base-100 flex items-center justify-center gap-6 w-full py-8 px-5  md:px-24">
+          <div className="flex justify-center flex-1 w-full">
+            <div className="card bg-base-100 border-2 border-[#ECEDFD]">
+              <div className="card-body p-4 md:p-8 bg-gray-50">
+                <h2 className="card-title text-xl font-bold text-custom-black">
+                  {product.fields.title}
+                </h2>
+                <p>{product.fields.description}</p>
+              </div>
+            </div>
+          </div>
+
+          <Formulario title={product.fields.title} />
+        </div>
+
+      }
+    </>
   );
 };
 

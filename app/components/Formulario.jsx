@@ -147,6 +147,7 @@ const Formulario = ({ title }) => {
               className="file-input file-input-bordered w-full"
               name="file"
               onChange={handleArchivo}
+              required
             />
           </div>
 
