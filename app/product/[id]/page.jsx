@@ -1,4 +1,4 @@
-
+"use client"
 import Formulario from '@/app/components/Formulario';
 import useDefault from '@/app/hooks/useProduct';
 import { useParams } from 'next/navigation';
