@@ -1,4 +1,4 @@
-"use client";
+
 import React, { useState } from 'react'
 import Product from './components/Product';
 import Carrousel from './components/Carrousel';
