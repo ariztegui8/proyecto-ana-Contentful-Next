@@ -4,6 +4,11 @@ import Product from './components/Product';
 import Carrousel from './components/Carrousel';
 import Link from 'next/link';
 import useProduct from './hooks/useProduct';
+import { FaPeoplePulling } from 'react-icons/fa6';
+import { AiFillHome } from 'react-icons/ai';
+import { BsFillPeopleFill } from 'react-icons/bs';
+import { MdEmail } from 'react-icons/md';
+
 
 
 const Drawer = () => {
@@ -31,7 +36,12 @@ const Drawer = () => {
               </label>
             </div>
             <div className=" px-2 mx-2">
-              <Link href="/" className='font-bold'>Trivago Electronic</Link>
+              <Link href="/" className='font-bold'>
+                <div className='flex items-center gap-2'>
+                  <FaPeoplePulling size={30} />
+                  <p>Recluting</p>
+                </div>
+              </Link>
             </div>
 
             {/* <div className="input-group  max-w-xl flex-none hidden lg:flex">
@@ -73,13 +83,28 @@ const Drawer = () => {
           <ul className="menu p-4 w-80 h-full bg-base-200">
             {/* Sidebar content here */}
             <li>
-              <Link onClick={handleClick} href='/'>Home</Link>
+              <Link onClick={handleClick} href='/'>
+                <div className='flex items-center gap-2'>
+                  <AiFillHome size={18} />
+                  <p>Home</p>
+                </div>
+              </Link>
             </li>
             <li>
-              <Link onClick={handleClick} href='/about'>About</Link>
+              <Link onClick={handleClick} href='/about'>
+              <div className='flex items-center gap-2'>
+                  <BsFillPeopleFill size={18} />
+                  <p>About</p>
+                </div>
+              </Link>
             </li>
             <li>
-              <Link onClick={handleClick} href='/contact'>Contact</Link>
+              <Link onClick={handleClick} href='/contact'>
+              <div className='flex items-center gap-2'>
+                  <MdEmail size={18} />
+                  <p>Contact</p>
+                </div>
+                </Link>
             </li>
             {/* <div className="input-group  max-w-xl py-2 px-3">
               <input
@@ -94,7 +119,7 @@ const Drawer = () => {
             </div> */}
 
           </ul>
-          
+
 
         </div>
       </div>
