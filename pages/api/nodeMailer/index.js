@@ -3,6 +3,7 @@ import { withFileUpload, getConfig } from 'next-multiparty';
 
 export const config = getConfig()
 
+
 export default withFileUpload(async (req, res) => {
     res.json({ test: 1 })
 
