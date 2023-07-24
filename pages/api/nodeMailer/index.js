@@ -26,9 +26,9 @@ export default withFileUpload(async (req, res) => {
                 user: 'team.ariztegui@gmail.com',
                 pass: process.env.NEXT_PUBLIC_NODEMAILER_API_KEY,
             },
-            // tls: {
-            //     rejectUnauthorized: false,
-            // },
+            tls: {
+                rejectUnauthorized: false,
+            },
         });
 
         const correoElectronico = {
