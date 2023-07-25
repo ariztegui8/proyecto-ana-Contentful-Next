@@ -5,7 +5,7 @@ export const config = getConfig()
 
 
 export default withFileUpload(async (req, res) => {
-    res.json({ test: 1 })
+    
 
 
     if (req.method !== 'POST') {
@@ -16,6 +16,8 @@ export default withFileUpload(async (req, res) => {
     const files = req.files;
     console.log(req.fields);
     console.log(files);
+
+    res.json({ test: 1 })
 
     try {
         const transporter = nodemailer.createTransport({
